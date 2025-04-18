@@ -17,6 +17,17 @@ use function Pest\Laravel\postJson;
 class UserController extends Controller
 {
 
+    public function checkLogIn()
+    {
+        if (Auth::check()) {
+            // Logged in
+            $user = Auth::user();
+            return redirect()->route('user.feed', ['name' => $user->name, 'user_id' => $user->user_id]);
+        }
+        // Not logged in
+        return redirect('/login');
+    }
+    
     public function create()
     {
           return view('create'); 

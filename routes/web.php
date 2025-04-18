@@ -9,20 +9,24 @@ use App\Http\Controllers\CommentController;
 use App\Http\Controllers\LikeController;
 
 
-//Immediately redirects to login page
-Route::get('/', function () {
-    return redirect('/login');
-});
+//  Immediately redirects to login page
+Route::get('/', [UserController::class, 'checkLogIn'])->name('user.check'); 
 
-//Once logged in, redirected to /feed/{name}/{id}
+/** Log in routes
+ *  Once logged in, redirected to /feed/{name}/{id}
+ */
 Route::get('/login', [AuthController::class, 'showLogin'])->name('login');
 Route::post('/login', [AuthController::class, 'login'])->name('login');
 
-//Redirects to log in page
+/** Sign up routes
+ *  Redirects to log in page
+ */ 
 Route::get('/signup', [AuthController::class, 'showRegister'])->name('signup');
 Route::post('/signup', [AuthController::class, 'register'])->name('signup');
 
-//Redirects to log in page
+/** Log out route
+ *  Redirects to log in page
+ */ 
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
 
@@ -30,10 +34,19 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/userTable', [UserController::class, 'index'])->name('userTable');
 });
 
-//Main page according to logged user
+/** Feed routes
+ *  Main page according to logged user
+ */ 
 Route::middleware(['auth'])->group(function () {
     Route::get('/feed/{name}/{user_id}', [ContentController::class, 'showFeed'])->name('user.feed');
 });
+Route::post('/store', [ContentController::class, 'store']);
+Route::post('/content/newContent',[UserController::class,'makepost'])->name('contents.store');
+Route::get('/content/{content}',[UserController::class,'getPost'])->name('contents.show');
+Route::get('/content/{content}/delete',[UserController::class,'deletepost'])->name('contents.delete');
+//Route::resource('contents', ContentController::class)->except(['index']);
+//Route::get('/home', [ContentController::class, 'index'])->name('home');
+Route::get('/explore', [ContentController::class, 'explore'])->name('contents.explore');
 
 Route::middleware(['auth', 'can:manage,App\Models\User'])->group(function () {
     Route::resource('users', UserController::class)->except(['index']);
@@ -50,14 +63,8 @@ Route::middleware(['auth', 'can:manage,App\Models\User'])->group(function () {
 
 Route::get('/create', [UserController::class, 'create'])->name('create');
 
-//home route
-// Content routes
-//Route::resource('contents', ContentController::class)->except(['index']);
-//Route::get('/home', [ContentController::class, 'index'])->name('home');
-Route::post('/store', [ContentController::class, 'store']);
-Route::post('/content/newContent',[UserController::class,'makepost'])->name('contents.store');
-Route::get('/content/{content}',[UserController::class,'getPost'])->name('contents.show');
-Route::get('/content/{content}/delete',[UserController::class,'deletepost'])->name('contents.delete');
+
+
 
 // User profile routes
 Route::get('/users/{users}', [UserController::class, 'show'])->name('users.profile');

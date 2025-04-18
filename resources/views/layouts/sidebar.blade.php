@@ -7,6 +7,7 @@
         }
 
         .sidebar h1 {
+            text-align:center;
             font-size: 2rem;
             font-weight:bold;
             font-family: sans-serif;
@@ -80,7 +81,7 @@
 <aside class="sidebar">
     <nav class="sideNav">
         <h1><i class ='fas fa-address-book'></i>goBLOG</h1></br>
-        <a href="/feed"><i class ='fas fa-house-chimney'></i>Home</a></br>
+        <a href="{{ route('user.feed', ['name' => Auth::user()->name, 'user_id' => Auth::user()->user_id]) }}"><i class ='fas fa-house-chimney'></i>Home</a></br>
         <a href="/search"><i class ='fas fa-search'></i>Search</a></br>
         <a href="/explore"><i class ='fas fa-compass'></i>Explore</a></br>
         <a href="/profile"><i class ='fas fa-user'></i>Profile</a></br>
