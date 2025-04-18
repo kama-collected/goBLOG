@@ -33,29 +33,23 @@ Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
  *  Main page according to logged user
  */ 
 Route::middleware(['auth'])->group(function () {
+    //Content routes
     Route::get('/feed/{name}/{user_id}', [ContentController::class, 'showFeed'])->name('user.feed');
+    Route::post('/store', [ContentController::class, 'store'])->name('store.post');
+    Route::get('content/{content_id}', [ContentController::class, 'show'])->name('content.show');
+    Route::get('/content/{content_id}/edit', [ContentController::class, 'edit'])->name('content.edit');
+    Route::put('/content/{content_id}', [ContentController::class, 'update'])->name('content.update');
+    Route::delete('/content/{content_id}', [ContentController::class, 'destroy'])->name('content.delete');
+    Route::get('/explore', [ContentController::class, 'explore'])->name('contents.explore');
+    //Likes routes
+    Route::post('/contents/{content}', [LikeController::class, 'like'])->name('post.like');
+    Route::delete('/contents/{content}', [LikeController::class, 'unlike'])->name('post.unlike');
+    //Comments routes
+    Route::post('/contents/{content_id}/comments', [CommentController::class, 'store'])->name('comment.store');
+    Route::delete('/comments/{comment}', [CommentController::class, 'destroy'])->name('comment.destroy');
 });
-Route::post('/store', [ContentController::class, 'store'])->name('store.post');
-Route::get('content/{content_id}', [ContentController::class, 'show'])->name('content.show');
-Route::get('/content/{content_id}/edit', [ContentController::class, 'edit'])->name('content.edit');
-Route::put('/content/{content_id}', [ContentController::class, 'update'])->name('content.update');
-Route::delete('/content/{content_id}', [ContentController::class, 'destroy'])->name('content.delete');
-Route::get('/explore', [ContentController::class, 'explore'])->name('contents.explore');
 //Route::resource('contents', ContentController::class)->except(['index']);
 //Route::get('/home', [ContentController::class, 'index'])->name('home');
-
-/**
- *  Like routes
- */
-Route::post('/contents/{content}', [LikeController::class, 'like'])->name('post.like');
-Route::delete('/contents/{content}', [LikeController::class, 'unlike'])->name('post.unlike');
-
-/**
- *  Comment routes
- */
-Route::post('/contents/{content_id}/comments', [CommentController::class, 'store'])->name('comment.store');
-Route::delete('/comments/{comment}', [CommentController::class, 'destroy'])->name('comment.destroy');
-
 
 Route::middleware(['auth', 'can:manage,App\Models\User'])->group(function () {
     Route::resource('users', UserController::class)->except(['index']);
