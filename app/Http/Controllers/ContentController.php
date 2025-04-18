@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Content;
 use App\Models\User;
+use App\Models\Comment;
 use App\Models\Like;
 
 class ContentController extends Controller
@@ -58,8 +59,9 @@ class ContentController extends Controller
 
     public function show($content_id){
         $content = Content::findOrFail($content_id);
+        $comments = Comment::where('content_id', $content_id)->get();
 
-        return view('content.show', ['content' => $content]);
+        return view('content', ['content' => $content, 'comments' => $comments]);
     }
 
     public function create() {

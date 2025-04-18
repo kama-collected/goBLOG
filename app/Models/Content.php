@@ -18,11 +18,11 @@ class Content extends Model
     ];
 
     public function Comments(){
-        return $this ->hasMany('App\Models\comments');
+        return $this ->hasMany(Comment::class);
     }
 
     public function likes() {
-        return $this->hasMany(\App\Models\likes::class, 'content_id');
+        return $this->hasMany(Like::class, 'content_id');
     }
 
     public function user() {

@@ -286,10 +286,10 @@
                     <!-- Text, url and see more button of the feed page -->
                     @if(strlen($content->content_text) > $charLimit)
                         <span class="preview">{{Str::limit($content->content_text, $charLimit)}}</span>
-                        <span class="full-text" style="display:none;">{{ $content->content_text }} </br> <a href='{{$content->url}}'> {{ $content->url }} </a> </span>
+                        <span class="full-text" style="display:none;">{{ $content->content_text }} </br> <a style='color:blue;'href='{{$content->url}}'> {{ $content->url }} </a> </span>
                         <button class="see-more-btn" onclick="toggleText(this)">See more...</button>
                     @else
-                        <span>{{ $content->content_text }} </br> <a href='{{$content->url}}'> {{ $content->url }} </a> </span>
+                        <span>{{ $content->content_text }} </br> <a style='color:blue' href='{{$content->url}}'> {{ $content->url }} </a> </span>
                     @endif
 
                     <!-- Like and comment buttons -->

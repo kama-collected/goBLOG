@@ -40,14 +40,22 @@ Route::get('content/{content_id}', [ContentController::class, 'show'])->name('co
 Route::get('/content/{content_id}/edit', [ContentController::class, 'edit'])->name('content.edit');
 Route::put('/content/{content_id}', [ContentController::class, 'update'])->name('content.update');
 Route::delete('/content/{content_id}', [ContentController::class, 'destroy'])->name('content.delete');
-
-
-//Route::post('/content/newContent',[UserController::class,'makepost'])->name('contents.store');
-//Route::get('/content/{content}',[UserController::class,'getPost'])->name('contents.show');
-//Route::get('/content/{content}/delete',[UserController::class,'deletepost'])->name('contents.delete');
+Route::get('/explore', [ContentController::class, 'explore'])->name('contents.explore');
 //Route::resource('contents', ContentController::class)->except(['index']);
 //Route::get('/home', [ContentController::class, 'index'])->name('home');
-Route::get('/explore', [ContentController::class, 'explore'])->name('contents.explore');
+
+/**
+ *  Like routes
+ */
+Route::post('/contents/{content}', [LikeController::class, 'like'])->name('post.like');
+Route::delete('/contents/{content}', [LikeController::class, 'unlike'])->name('post.unlike');
+
+/**
+ *  Comment routes
+ */
+Route::post('/contents/{content_id}/comments', [CommentController::class, 'store'])->name('comment.store');
+Route::delete('/comments/{comment}', [CommentController::class, 'destroy'])->name('comment.destroy');
+
 
 Route::middleware(['auth', 'can:manage,App\Models\User'])->group(function () {
     Route::resource('users', UserController::class)->except(['index']);
@@ -73,13 +81,5 @@ Route::get('/create', [UserController::class, 'create'])->name('create');
 Route::get('/users/{users}', [UserController::class, 'show'])->name('users.profile');
 //Route::get('/users/{users}/edit', [UserController::class, 'edit'])->name('users.edit');
 Route::put('/users/{users}', [UserController::class, 'update'])->name('users.update');
-
-//Likes Route
-Route::post('/contents/{content}', [LikeController::class, 'like'])->name('post.like');
-Route::delete('/contents/{content}', [LikeController::class, 'unlike'])->name('post.unlike');
-
-// Comment routes
-Route::post('/contents/{content}/comments', [UserController::class, 'writecomment'])->name('comments.store');
-Route::delete('/comments/{comment}', [UserController::class, 'writecomment'])->name('comments.destroy');
 
 Route::get('/contentsDashBoard',[UserController::class,'loadContent']);
