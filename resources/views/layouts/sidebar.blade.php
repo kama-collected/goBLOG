@@ -39,11 +39,18 @@
             color: #27ae60;
         }
 
+        .sideNav a.active {
+            font-weight: bold;
+            color: #27ae60;
+        }
+
+
         .sidebar i {
             margin-right: 10px;
         }
 
         .sideNav form {
+
             position: absolute;
             margin: 100% auto 5% 5%;
             left: 0;
@@ -69,7 +76,7 @@
 
         .sideNav form button:hover {
             background-color: #f0f2f5;
-            color: #27ae60;
+            color: red;
         }
     </style>
 
@@ -81,10 +88,25 @@
 <aside class="sidebar">
     <nav class="sideNav">
         <h1><i class ='fas fa-address-book'></i>goBLOG</h1></br>
-        <a href="{{ route('user.feed', ['name' => Auth::user()->name, 'user_id' => Auth::user()->user_id]) }}"><i class ='fas fa-house-chimney'></i>Home</a></br>
-        <a href="/search"><i class ='fas fa-search'></i>Search</a></br>
-        <a href="/explore"><i class ='fas fa-compass'></i>Explore</a></br>
-        <a href="/profile"><i class ='fas fa-user'></i>Profile</a></br>
+        <a 
+            href="{{ route('user.feed', ['name' => Auth::user()->name, 'user_id' => Auth::user()->user_id]) }}" 
+            class="{{ request()->is('feed/*') ? 'active' : '' }}"
+        >
+            <i class ='fas fa-house-chimney'></i>Home
+        </a></br>
+
+        <a href="/search" class="{{ request()->is('search') ? 'active' : '' }}">
+            <i class ='fas fa-search'></i>Search
+        </a></br>
+
+        <a href="/explore" class="{{ request()->is('explore') ? 'active' : '' }}">
+            <i class ='fas fa-compass'></i>Explore
+        </a></br>
+
+        <a href="/profile" class="{{ request()->is('profile') ? 'active' : '' }}">
+            <i class ='fas fa-user'></i>Profile
+        </a></br>
+
 
         <form method="POST" action="{{ route('logout') }}">
             @csrf
