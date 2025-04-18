@@ -49,6 +49,7 @@
             .content img {
                 margin: 0 20%;
                 width: 60%;
+                border-radius:10px;
             }
 
             .post-text {
