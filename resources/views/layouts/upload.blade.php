@@ -7,7 +7,7 @@
 
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
         <style> 
-            form {
+            .upload-container form {
                 display: block;
                 margin: auto;
                 width: 60%;
@@ -19,7 +19,7 @@
                 color: #333;
             }
 
-            textarea{
+            .upload-container textarea{
                 width: 100%;
                 padding: 0.75rem;
                 margin-bottom: 1rem;
@@ -28,7 +28,7 @@
                 font-size: 1rem;
             }
 
-            input[type="url"] {
+            .upload-container input[type="url"] {
                 margin-left:10px;
                 padding: 3px;
                 width: 50%;
@@ -81,6 +81,7 @@
     </head>
 
     <body>
+        <div class='upload-container'>
         <form action='/store' method='POST'>
             @csrf
             <div class="upload">
@@ -94,9 +95,11 @@
                     <input type="file" id="img_dir" name="img_dir" accept="image/*" style="display:none">
                 </div>
             </div>
+
             <div class="submission">
                 <button type="submit"><i class="fas fa-square-arrow-up-right"></i></button>
             </div>
         </form>
+        </div>
     </body>
 </html>

@@ -16,3 +16,23 @@ function toggleText(button) {
 
 // Make it available globally
 window.toggleText = toggleText;
+
+function toggleMenu(icon) {
+    const menu = icon.nextElementSibling;
+    menu.classList.toggle('hidden');
+    
+    // Optional: close all other menus
+    document.querySelectorAll('.menu').forEach(m => {
+        if (m !== menu) m.classList.add('hidden');
+    });
+}
+
+// Close the menu if clicked outside
+document.addEventListener('click', function (e) {
+    const isMenu = e.target.closest('.menu-wrapper');
+    if (!isMenu) {
+        document.querySelectorAll('.menu').forEach(menu => menu.classList.add('hidden'));
+    }
+});
+
+window.toggleMenu = toggleMenu;

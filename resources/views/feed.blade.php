@@ -106,7 +106,7 @@
             }
 
             .content button {
-                background-color: #27ae60;
+                background-color: #fff;
                 color: white;
                 border: none;
                 padding: 0.5rem 1rem;
@@ -118,7 +118,7 @@
             }
 
             .content button:hover {
-                background-color: #219150;
+                background-color: #f0f2f5;
                 color: #27ae60;
             }
 
@@ -188,6 +188,57 @@
                 color: #27ae60;
             }
 
+            .menu-wrapper {
+                position: relative;
+                display: inline-block;
+            }
+
+            .menu {
+                position: absolute;
+                top: 30px;
+                right: 0;
+                background-color: white;
+                border: 1px solid #ddd;
+                border-radius: 5px;
+                box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+                padding: 10px;
+                z-index: 100;
+            }
+
+            .menu form {
+                padding-right: 20px;
+                width:100%;
+            }
+
+            .menu a{
+                margin-left: 10px;
+                margin-right: 20px;
+                margin-bottom: 4px;
+                width: 70%;
+                border-radius: 8px;
+            }
+
+            .menu a,
+            .menu form button {
+                display: block;
+                padding: 5px 10px;
+                text-align: left;
+                background: none;
+                border: none;
+                font: inherit;
+                cursor: pointer;
+                color: #333;
+            }
+
+            .menu a:hover,
+            .menu form button:hover {
+                background-color: #f0f2f5;
+                color: #27ae60;
+            }
+
+            .hidden {
+                display: none;
+            }
 
 
         </style>   
@@ -212,7 +263,17 @@
 
                         <div class='edit-post'>
                         @if(auth()->id() === $content->user_id)
-                            <i class='fas fa-ellipsis-vertical'></i>
+                        <div class="menu-wrapper">
+                            <i class='fas fa-ellipsis-vertical' onclick="toggleMenu(this)"></i>
+                            <div class="menu hidden">
+                                <a href="{{ route('content.edit', ['content_id' => $content->content_id]) }}">Edit</a>
+                                <form method="POST" action="{{ route('content.delete', ['content_id' => $content->content_id]) }}">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit">Delete</button>
+                                </form>
+                            </div>
+                        </div>
                         @endif
                         </div>
                     </div>
@@ -245,7 +306,7 @@
                             </button>
                         </form>
 
-                        <a href="{{ route('contents.show', ['content' => $content->content_id]) }}" class="comment-btn">
+                        <a href="{{ route('content.show', ['content_id' => $content->content_id]) }}" class="comment-btn">
                             <i class="fas fa-comment"></i> Comment
                         </a>
                     </div>

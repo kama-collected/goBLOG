@@ -29,21 +29,22 @@ Route::post('/signup', [AuthController::class, 'register'])->name('signup');
  */ 
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
-
-Route::middleware(['auth'])->group(function () {
-    Route::get('/userTable', [UserController::class, 'index'])->name('userTable');
-});
-
 /** Feed routes
  *  Main page according to logged user
  */ 
 Route::middleware(['auth'])->group(function () {
     Route::get('/feed/{name}/{user_id}', [ContentController::class, 'showFeed'])->name('user.feed');
 });
-Route::post('/store', [ContentController::class, 'store']);
-Route::post('/content/newContent',[UserController::class,'makepost'])->name('contents.store');
-Route::get('/content/{content}',[UserController::class,'getPost'])->name('contents.show');
-Route::get('/content/{content}/delete',[UserController::class,'deletepost'])->name('contents.delete');
+Route::post('/store', [ContentController::class, 'store'])->name('store.post');
+Route::get('content/{content_id}', [ContentController::class, 'show'])->name('content.show');
+Route::get('/content/{content_id}/edit', [ContentController::class, 'edit'])->name('content.edit');
+Route::put('/content/{content_id}', [ContentController::class, 'update'])->name('content.update');
+Route::delete('/content/{content_id}', [ContentController::class, 'destroy'])->name('content.delete');
+
+
+//Route::post('/content/newContent',[UserController::class,'makepost'])->name('contents.store');
+//Route::get('/content/{content}',[UserController::class,'getPost'])->name('contents.show');
+//Route::get('/content/{content}/delete',[UserController::class,'deletepost'])->name('contents.delete');
 //Route::resource('contents', ContentController::class)->except(['index']);
 //Route::get('/home', [ContentController::class, 'index'])->name('home');
 Route::get('/explore', [ContentController::class, 'explore'])->name('contents.explore');
@@ -61,10 +62,12 @@ Route::middleware(['auth', 'can:manage,App\Models\User'])->group(function () {
     Route::get('/users/{id}/edit', [UserController::class, 'edit'])->name('edit');
 });
 
+
+Route::middleware(['auth'])->group(function () {
+    Route::get('/userTable', [UserController::class, 'index'])->name('userTable');
+});
+
 Route::get('/create', [UserController::class, 'create'])->name('create');
-
-
-
 
 // User profile routes
 Route::get('/users/{users}', [UserController::class, 'show'])->name('users.profile');

@@ -39,6 +39,7 @@ class ContentController extends Controller
         ]);
     }
 
+    // Explore Page
     public function explore()
     {
         $contents = Content::with('user')->get(); // eager load user for displaying name
@@ -65,12 +66,22 @@ class ContentController extends Controller
         return view ('content.create');
     }
 
-    public function destroy($content_id) {
-        $content = Content::findOrFail($content_id);
-        $content->delete();
-
-        return redirect('/');
+    public function edit($id) {
+        $content = Content::findOrFail($id);
+        return view('content.edit', compact('content'));
     }
+    
+    public function update(Request $request, $id) {
+        $content = Content::findOrFail($id);
+        $content->update($request->all());
+        return redirect()->route('user.feed', ['name' => Auth::user()->name, 'user_id' => Auth::user()->id]);
+    }
+    
+    public function destroy($id) {
+        $content = Content::findOrFail($id);
+        $content->delete();
+        return back()->with('message', 'Post deleted successfully.');
+    }    
 
     public function store(Request $request) {
         $user = Auth::user();
