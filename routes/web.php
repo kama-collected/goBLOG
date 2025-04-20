@@ -36,11 +36,13 @@ Route::middleware(['auth'])->group(function () {
     //Content routes
     Route::get('/feed/{name}/{user_id}', [ContentController::class, 'showFeed'])->name('user.feed');
     Route::post('/store', [ContentController::class, 'store'])->name('store.post');
-    Route::get('content/{content_id}', [ContentController::class, 'show'])->name('content.show');
+    Route::get('/content/{content_id}', [ContentController::class, 'show'])->name('content.show');
     Route::get('/content/{content_id}/edit', [ContentController::class, 'edit'])->name('content.edit');
     Route::put('/content/{content_id}', [ContentController::class, 'update'])->name('content.update');
     Route::delete('/content/{content_id}', [ContentController::class, 'destroy'])->name('content.delete');
-    Route::get('/explore', [ContentController::class, 'explore'])->name('contents.explore');
+    //Explore routes
+    Route::get('/explore', [ContentController::class, 'explore'])->name('content.explore');
+    Route::get('/explore/{user_id}', [ContentController::class, 'exploreUser'])->name('content.exploreUser');
     //Likes routes
     Route::post('/contents/{content}', [LikeController::class, 'like'])->name('post.like');
     Route::delete('/contents/{content}', [LikeController::class, 'unlike'])->name('post.unlike');

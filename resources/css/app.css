@@ -1,5 +1,8 @@
 @import 'tailwindcss';
 @import url('https://fonts.googleapis.com/css2?family=Lato&family=Poppins:wght@600&display=swap');
+@import './content.css';
+@import './upload.css';
+@import './sidebar.css';
 
 @source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
 @source '../../storage/framework/views/*.php';
@@ -15,7 +18,11 @@
 /* Set default font for all pages */
 body {
     font-family: 'Lato', sans-serif;
+    background: #222;
+    color: #ddd;
+    padding: 10px;
 }
+
 
 /* Use 'Poppins' for titles */
 .site-title, h1, h2, h3 {

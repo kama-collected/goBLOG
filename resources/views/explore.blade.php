@@ -254,7 +254,7 @@
                     <!-- Top row of the feed page  -->
                     <div class='top-row'>
                         <div class='to-user'>
-                            <h2><i class='fas fa-user'></i>{{$content->user->name}}</h2>
+                            <h2><a href="{{ route('content.exploreUser', ['user_id' => $content->user->user_id])}}"><i class='fas fa-user'></i>{{$content->user->name}}</a></h2>
                         </div>
 
                         <div class='edit-post'>
@@ -309,6 +309,7 @@
                             <i class="fas fa-comment"></i> Comment
                         </a>
                     </div>
+                    
                 </div>
             @endforeach
         </div>

@@ -43,7 +43,7 @@ class ContentController extends Controller
     // Explore Page
     public function explore()
     {
-        $contents = Content::with('user')->get(); // eager load user for displaying name
+        $contents = Content::with('user')->get();
         $likedContentIDs = Like::where('user_id', Auth::id())->pluck('content_id')->toArray();
 
         foreach ($contents as $content) {
@@ -56,6 +56,18 @@ class ContentController extends Controller
         ]);
     }
 
+    public function exploreUser($user_id)
+    {
+        $user = User::findOrFail($user_id);
+        $contents = Content::where('user_id', $user_id)->get();
+        $likedContentIDs = Like::where('user_id', Auth::id())->pluck('content_id')->toArray();
+
+        foreach ($contents as $content) {
+            $content->likes_count = Like::where('content_id', $content->content_id)->count();
+        }
+
+        return view('explore', compact('user', 'contents', 'likedContentIDs'));
+    }
 
     public function show($content_id){
         $content = Content::findOrFail($content_id);
