@@ -11,8 +11,6 @@
     </head>
     <body>
         @include('layouts.sidebar')
-
-
         @php
             $charLimit = 200;
         @endphp

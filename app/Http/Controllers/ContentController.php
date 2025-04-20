@@ -90,9 +90,29 @@ class ContentController extends Controller
     
     public function update(Request $request, $id) {
         $content = Content::findOrFail($id);
-        $content->update($request->all());
-        return redirect()->route('user.feed', ['name' => Auth::user()->name, 'user_id' => Auth::user()->id]);
+    
+        $request->validate([
+            'content_text' => 'required|string',
+            'url' => 'nullable|url',
+            'img_dir' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+        ]);
+    
+        $content->content_text = $request->input('text_upload');
+        $content->url = $request->input('urllink');
+    
+        if ($request->hasFile('img_dir')) {
+            $imagePath = $request->file('img_dir')->store('images', 'public');
+            $content->img_dir = $imagePath;
+        }
+    
+        $content->save();
+    
+        return redirect()->route('user.feed', [
+            'name' => Auth::user()->name,
+            'user_id' => Auth::user()->user_id,
+        ]);
     }
+    
     
     public function destroy($id) {
         $content = Content::findOrFail($id);

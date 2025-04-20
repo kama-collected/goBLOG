@@ -24,7 +24,7 @@
             </div>
 
             <div class="upload-submission">
-                <button type="submit"><i class="fas fa-square-arrow-up-right"></i></button>
+                <button type="submit">Post <i class="fas fa-square-arrow-up-right"></i></button>
             </div>
         </form>
         </div>
