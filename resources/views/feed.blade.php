@@ -6,68 +6,13 @@
         <meta charset="utf-8">
         <meta name="viewport" upload="width=device-width, initial-scale=1">
 
-        <title>Blog</title>
+        <title>goBlog</title>
 
         @vite(['resources/css/app.css', 'resources/js/app.js', 'resources/css/app.css'])
 
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.bunny.net">
-        <link href="https://fonts.bunny.net/css?family=instrument-sans:400,500,600" rel="stylesheet" />
-
-        <script src="{{ asset('js/like.js') }}"></script>
-
-        <style>
-
-            .menu-wrapper {
-                position: relative;
-                display: flex;
-            }
-            .menu {
-                position: absolute;
-                top: 30px;
-                right: 0;
-                background-color: white;
-                border: 1px solid #ddd;
-                border-radius: 5px;
-                box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-                padding: 10px;
-                z-index: 100;
-            }
-            .menu form {
-                width:100%;
-            }
-
-            .menu a{
-                margin-left: 10px;
-                margin-right: 20px;
-                margin-bottom: 4px;
-
-                border-radius: 8px;
-            }
-            .menu a,
-            .menu form button {
-                display: block;
-                padding: 5px 10px;
-                text-align: left;
-                background: none;
-                border: none;
-                font: inherit;
-                cursor: pointer;
-                color: #333;
-                padding: 5px 40px 5px 40px;
-            }
-            .menu a:hover,
-            .menu form button:hover {
-                background-color:inherit;
-                color: #27ae60;
-            }
-
-            .hidden {
-                display: none;
-            }
-
-
-        </style>   
+        <link href="https://fonts.bunny.net/css?family=instrument-sans:400,500,600" rel="stylesheet" /> 
     </head>
     <body>
         @include('layouts.sidebar')
@@ -129,14 +74,19 @@
                                 <span class="like-content">
                                     <span class="like-count">{{ $content->likes_count }}</span>
                                     <i class="fas fa-thumbs-up"></i>
-                                    <span class="like-label">Like</span>
+                                    <span class="like-label">Likes</span>
                                 </span>
                             </button>
                         </form>
 
                         <a href="{{ route('content.show', ['content_id' => $content->content_id]) }}" class="comment-btn">
-                            <i class="fas fa-comment"></i> Comment
+                            <span class="comment-content">
+                                <span class="comment-count">{{ $content->comments_count }}</span>
+                                <i class="fas fa-comment"></i>
+                                <span class="comment-label">Comments</span>
+                            </span>
                         </a>
+
                     </div>
 
                 </div>

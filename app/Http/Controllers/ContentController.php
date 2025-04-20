@@ -30,7 +30,8 @@ class ContentController extends Controller
         $likedContentIDs = Like::where('user_id', $user->user_id)->pluck('content_id')->toArray();
 
         foreach ($contents as $content) {
-            $content->likes_count = Like::where('content_id', $content->content_id)->count(); // Count likes for each post
+            $content->likes_count = Like::where('content_id', $content->content_id)->count();
+            $content->comments_count = Comment::where('content_id', $content->content_id)->count();
         }
 
         return view('feed', [
@@ -48,6 +49,7 @@ class ContentController extends Controller
 
         foreach ($contents as $content) {
             $content->likes_count = Like::where('content_id', $content->content_id)->count();
+            $content->comments_count = Comment::where('content_id', $content->content_id)->count();
         }
 
         return view('explore', [
@@ -64,6 +66,7 @@ class ContentController extends Controller
 
         foreach ($contents as $content) {
             $content->likes_count = Like::where('content_id', $content->content_id)->count();
+            $content->comments_count = Comment::where('content_id', $content->content_id)->count();
         }
 
         return view('explore', compact('user', 'contents', 'likedContentIDs'));

@@ -79,7 +79,7 @@ body {
 }
 
 .content-post a {
-    color: rgb(42, 42, 231);
+    color: rgb(69, 69, 238);
 }
 .content-post a:hover {
     text-decoration: underline;
@@ -105,7 +105,7 @@ body {
     margin-top: 10px; 
     display: flex; 
     gap: 10px; 
-    align-items: left;
+    align-items: center;
 }
 
 .content-footer i {
@@ -136,7 +136,8 @@ body {
     gap: 6px;
     width: 40px;
 }
-.like-count {
+.like-count,
+.comment-count {
     font-size: 14px;
     color: #777;
     margin-right:10px;
@@ -156,12 +157,74 @@ body {
 
 .content-footer a {
     background: none;
-    margin-left:auto;
     padding: 6px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    text-decoration: none;
+    color: inherit;
+    transition: color 0.3s ease;
+    margin-left:2.5rem;
 }
 .content-footer a:hover{
     background: none;
     color: #27ae60;
 }
 
+/*   Menu on the header of a post   */
+.menu-wrapper {
+    position: relative;
+    display: inline-block;
+}
+.menu-wrapper i.fas.fa-ellipsis-vertical {
+    cursor: pointer;
+    padding: 8px;
+    font-size: 18px;
+    transition: color 0.3s ease;
+}
+.menu-wrapper i.fas.fa-ellipsis-vertical:hover {
+    color: #27ae60;
+}
+
+
+.menu {
+    position: absolute;
+    right: 0;
+    top: 120%; /* Slightly below the icon */
+    background-color: #222;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+    border-radius: 8px;
+    overflow: hidden;
+    min-width: 150px;
+    z-index: 100;
+    display: flex;
+    flex-direction: column;
+    padding: 6px 0;
+}
+.menu.hidden {
+    display: none;
+}
+.menu a,
+.menu button {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 16px;
+    background: none;
+    border: none;
+    color: #ddd;
+    text-align: left;
+    font-size: 14px;
+    width: 100%;
+    cursor: pointer;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+.menu a:hover,
+.menu button:hover {
+    color: #27ae60;
+}
+.menu i {
+    width: 16px;
+    text-align: center;
+}
 
