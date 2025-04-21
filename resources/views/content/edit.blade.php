@@ -9,7 +9,7 @@
     <body>
     @include('layouts.sidebar')
         <div class='upload-container'>
-            <form action="{{ route('content.update', ['content_id' => $content->content_id]) }}" method="POST" enctype="multipart/form-data">
+            <form action="{{ route('content.update', ['content_id' => $content->content_id]) }}" method="POST">
                 @csrf
                 @method('PUT')
 

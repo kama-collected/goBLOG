@@ -19,7 +19,7 @@
                     <label for="link">Add URL</label>
                     <input type="url" id="urllink" name="urllink" placeholder="http://example.com">
                     <label for="img_dir" class="btn"><i class="fas fa-camera"></i>Add Image</label>
-                    <input type="file" id="img_dir" name="img_dir" accept="image/*" style="display:none">
+                    <input type="file" id="img_dir" name="img_dir" accept="images/*" style="display:none">
                 </div>
             </div>
 

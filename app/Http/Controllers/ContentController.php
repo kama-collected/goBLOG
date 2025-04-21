@@ -26,7 +26,7 @@ class ContentController extends Controller
         }
 
         $user = User::findOrFail($user_id);
-        $contents = Content::where('user_id', $user_id)->get();
+        $contents = Content::where('user_id', $user_id)->orderBy('updated_at', 'desc')->get();
         $likedContentIDs = Like::where('user_id', $user->user_id)->pluck('content_id')->toArray();
 
         foreach ($contents as $content) {
@@ -44,7 +44,7 @@ class ContentController extends Controller
     // Explore Page
     public function explore()
     {
-        $contents = Content::with('user')->get();
+        $contents = Content::with('user')->orderBy('updated_at', 'desc')->get();
         $likedContentIDs = Like::where('user_id', Auth::id())->pluck('content_id')->toArray();
 
         foreach ($contents as $content) {
@@ -61,7 +61,7 @@ class ContentController extends Controller
     public function exploreUser($user_id)
     {
         $user = User::findOrFail($user_id);
-        $contents = Content::where('user_id', $user_id)->get();
+        $contents = Content::where('user_id', $user_id)->orderBy('updated_at', 'desc')->get();
         $likedContentIDs = Like::where('user_id', Auth::id())->pluck('content_id')->toArray();
 
         foreach ($contents as $content) {
@@ -92,8 +92,8 @@ class ContentController extends Controller
         $content = Content::findOrFail($id);
     
         $request->validate([
-            'content_text' => 'required|string',
-            'url' => 'nullable|url',
+            'text_upload' => 'required|string',
+            'urllink' => 'nullable|url',
             'img_dir' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
     
