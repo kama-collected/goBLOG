@@ -49,6 +49,10 @@ Route::middleware(['auth'])->group(function () {
     //Comments routes
     Route::post('/contents/{content_id}/comments', [CommentController::class, 'store'])->name('comment.store');
     Route::delete('/comments/{comment}', [CommentController::class, 'destroy'])->name('comment.destroy');
+    //Edit user profile routes
+    Route::get('/profile/edit', [UserController::class, 'editUser'])->name('profile.edit');
+    Route::put('/profile/update', [UserController::class, 'updateUser'])->name('profile.update');
+
 });
 
 Route::middleware(['auth', 'can:manage,App\Models\User'])->group(function () {

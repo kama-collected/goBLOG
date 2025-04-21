@@ -23,7 +23,7 @@
             <i class ='fas fa-compass'></i>Explore
         </a></br>
 
-        <a href="/profile" class="{{ request()->is('profile') ? 'active' : '' }}">
+        <a href="{{ route('profile.edit') }}" class="{{ request()->is('profile/edit') ? 'active' : '' }}">
             <i class ='fas fa-user'></i>Profile
         </a></br>
 
