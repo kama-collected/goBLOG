@@ -46,6 +46,7 @@ class UserController extends Controller
 
         // Redirect with success message
         return redirect()->back()->with('success', 'User deleted successfully.');
+
     }
 
     public function edit($id)
