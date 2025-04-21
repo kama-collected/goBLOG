@@ -45,7 +45,8 @@ class UserController extends Controller
         $user->delete();
 
         // Redirect with success message
-        return redirect()->route('users.index')->with('success', 'User deleted successfully');
+       return redirect()->back()->with('success', 'User deleted successfully.');
+
     }
 
     public function edit($id)
