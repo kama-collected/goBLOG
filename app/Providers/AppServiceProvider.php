@@ -8,20 +8,7 @@ use Illuminate\Support\Facades\Gate;
 use App\Policies\UserPolicy;
 class AppServiceProvider extends ServiceProvider
 {
-    /**
-     * Register any application services.
-     */
-    
-    public function register(): void
-    {
-       $policies = [
-            User::class => UserPolicy::class,
-        ];
-    }
 
-    /**
-     * Bootstrap any application services.
-     */
     public function boot(): void
     {
         Schema::defaultStringLength(191);
