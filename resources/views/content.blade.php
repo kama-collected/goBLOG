@@ -250,7 +250,7 @@
     @include('layouts.sidebar')
     <div class="content">
         <!-- Top row of the content page -->
-        <div class='top-row'>
+        <div class='content-header'>
             <div class='content-header-user'>
                 <h2><a href="{{ route('content.exploreUser', ['user_id' => $content->user->user_id])}}"><i class='fas fa-user'></i>{{$content->user->name}}</a></h2>
             </div>
@@ -289,14 +289,14 @@
         </div>
 
         <!-- Like button -->
-        <div class='interact'>
+        <div class='content-footer'>
             <form class="like-form" data-content-id="{{ $content->content_id }}">
                 @csrf
                 <button type="submit" class="like-btn">
                     <span class="like-content">
                         <span style='margin-left:10px;'class="like-count">{{ $content->likes()->count() }}</span>
-                        <i style='padding:15px;background-color:#f0f2f5;border-radius:10px;font-size:20px;'class="fas fa-thumbs-up"></i>
-                        <span class="like-label">Like</span>
+                        <i style='font-size: 1.2rem;'class="fas fa-thumbs-up"></i>
+                        <span tyle='font-size: 1.2rem;' class="like-label">Like</span>
                     </span>
                 </button>
             </form>
