@@ -149,15 +149,6 @@
             <span class="inline-error">{{ $message }}</span>
         @enderror
 
-        <label for="is_admin">Sign up as:</label>
-        <select name="is_admin" required>
-            <option value="0">User</option>
-            <option value="1">Admin</option>
-        </select>
-        @error('is_admin')
-            <span class="inline-error">{{ $message }}</span>
-        @enderror
-
         <button type="submit">Sign Up</button>
 
         <a class="login-link" href="{{ route('login') }}">Already have an account? Log in here.</a>

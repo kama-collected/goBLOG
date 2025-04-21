@@ -208,7 +208,7 @@ class UserController extends Controller
             'is_admin' => $request->is_admin
         ]);
 
-        return redirect()->route('users.index')->with('success', 'User created successfully');
+        return redirect()->route('admindashboard')->with('success', 'User created successfully');
     }
 
  

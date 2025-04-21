@@ -81,36 +81,28 @@
     }
 </style>
 @endsection
-
 @section('content')
-<div class="admin-container">
-    <h2>All Posts by {{ $user->name }}</h2>
+<a href="{{ url('/feed/' . Auth::user()->name . '/' . Auth::user()->user_id) }}" class="btn btn-outline-dark mb-3">
+    ← Back to My Feed
+</a>
 
-    @if ($contents->isEmpty())
-        <p>This user has not posted anything yet.</p>
+<form action="{{ route('content.search') }}" method="GET" class="d-flex">
+    <input type="text" name="query" class="form-control me-2" placeholder="Search posts...">
+    <button type="submit" class="btn btn-outline-success">Search</button>
+</form>`
+<div class="container mt-4">
+    <h2>Search Results for "{{ $query }}"</h2>
+
+    @if ($results->isEmpty())
+        <p>No matching content found.</p>
     @else
-        @foreach($contents as $content)
-            <div class="card mb-4 p-3 border">
-                <h4>{{ $content->content_title }}</h4>
-                <p>{{ $content->content_body }}</p>
-
-                @if($content->url)
-                    <p class="text-muted">URL: <a href="{{ $content->url }}" target="_blank">{{ $content->url }}</a></p>
-                @endif
-
-                <small>Posted on {{ $content->created_at->format('d M Y H:i') }}</small><br>
-
-                <p><strong>Likes:</strong> {{ $content->likes->count() }}</p>
-
-                <form action="{{ route('content.delete', $content->content_id) }}" method="POST" style="display:inline;">
-                    @csrf
-                    @method('DELETE')
-                    <button class="btn btn-sm btn-danger">Delete This Post</button>
-                </form>
-            </div>
-        @endforeach
+    @foreach ($results as $content)
+    <div class="card p-3 mb-3">
+        <h4>{{ $content->content_title }}</h4>
+        <p>{{ $content->content_body }}</p>
+        <small>By {{ $content->user->name ?? 'Unknown User' }}</small>
+    </div>
+@endforeach
     @endif
 </div>
-
-<a href="{{ route('admindashboard') }}" class="btn btn-secondary mb-3">← Back to Admin Dashboard</a>
 @endsection

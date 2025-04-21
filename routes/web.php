@@ -9,6 +9,7 @@ use App\Http\Controllers\CommentController;
 use App\Http\Controllers\LikeController;
 
 
+
 //  Immediately redirects to login page
 Route::get('/', [UserController::class, 'checkLogIn'])->name('user.check'); 
 
@@ -82,3 +83,5 @@ Route::get('/admin/user/{user}/contents', [UserController::class, 'viewUserConte
     ->name('admin.user.contents');
 //Admin Delete Content
 Route::delete('/content/{content_id}', [ContentController::class, 'destroy'])->name('content.delete');
+
+Route::get('/search', [ContentController::class, 'search'])->name('content.search');
