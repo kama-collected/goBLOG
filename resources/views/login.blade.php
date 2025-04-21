@@ -13,7 +13,8 @@
         }
 
         body {
-            background: #f0f2f5;
+            background: #222;
+            color: #ddd;
             display: flex;
             height: 100vh;
             margin: 0;
@@ -22,25 +23,27 @@
 
         .web-title {
             display: flex;
-            text-align:left;
+            text-align: left;
         }
 
         .web-title h1 {
             font-size: 60px;
             margin: auto auto auto 10px;
             padding-left: 30px;
+            color: #ddd;
         }
 
         .web-title i {
             font-size: 160px;
             margin-left: 20%;
+            color: #27ae60;
         }
 
         .login-card {
-            display:inline-block;
+            display: inline-block;
             margin-left: auto;
             margin-right: 10%;
-            background: white;
+            background: #181a1b;
             padding: 2rem 2.5rem;
             border-radius: 12px;
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
@@ -51,7 +54,7 @@
         .login-card h1 {
             text-align: center;
             margin-bottom: 1.5rem;
-            color: #333;
+            color: #ddd;
         }
 
         .login-card form {
@@ -67,6 +70,8 @@
             border: 1px solid #ccc;
             border-radius: 8px;
             font-size: 1rem;
+            background: #333;
+            color: #ddd;
         }
 
         label {
@@ -75,6 +80,7 @@
             align-items: center;
             gap: 0.5rem;
             margin-bottom: 1rem;
+            color: #ddd;
         }
 
         .error-messages {
@@ -89,8 +95,6 @@
             width: 100%;
             padding: 0.75rem;
             background: #27ae60;
-
-            color: white;
             border: none;
             border-radius: 8px;
             font-size: 1rem;
@@ -113,6 +117,7 @@
         .signup-link:hover {
             text-decoration: underline;
         }
+
     </style>
 </head>
 

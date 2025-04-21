@@ -23,7 +23,7 @@
 
         <div class="content-container">
             <h1>Posts</h1>
-            @foreach($contents as $content)
+            @forelse($contents as $content)
                 <div class="content">
 
                     <!-- Content Header  -->
@@ -90,7 +90,9 @@
                     </div>
 
                 </div>
-            @endforeach
+            @empty
+                <p style="text-align: center; color: #aaa; font-size: 1.2rem;">No posts yet.</p>
+            @endforelse
         </div>
 
     </body>

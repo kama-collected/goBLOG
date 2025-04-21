@@ -6,7 +6,7 @@
 </head>
 
 <aside class="sidebar">
-    <h1><i class ='fas fa-address-book'></i>goBLOG</h1></br>
+    <h1><i style='color: #27ae60' class ='fas fa-address-book'></i>goBLOG</h1></br>
     <nav class="sideNav">
         <a 
             href="{{ route('user.feed', ['name' => Auth::user()->name, 'user_id' => Auth::user()->user_id]) }}" 
