@@ -29,7 +29,7 @@ Route::post('/signup', [AuthController::class, 'register'])->name('signup');
  */ 
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
-/** Feed routes
+/** Content related routes
  *  Main page according to logged user
  */ 
 Route::middleware(['auth'])->group(function () {
@@ -50,8 +50,6 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/contents/{content_id}/comments', [CommentController::class, 'store'])->name('comment.store');
     Route::delete('/comments/{comment}', [CommentController::class, 'destroy'])->name('comment.destroy');
 });
-//Route::resource('contents', ContentController::class)->except(['index']);
-//Route::get('/home', [ContentController::class, 'index'])->name('home');
 
 Route::middleware(['auth', 'can:manage,App\Models\User'])->group(function () {
     Route::resource('users', UserController::class)->except(['index']);
