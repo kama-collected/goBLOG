@@ -128,45 +128,6 @@
             color: #27ae60;
         }
 
-        .menu-wrapper {
-            position: relative;
-            display: inline-block;
-        }
-
-        .menu {
-            position: absolute;
-            top: 30px;
-            right: 0;
-            background-color: white;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-            padding: 10px;
-            z-index: 100;
-        }
-
-        .menu form {
-            padding-right: 20px;
-            width:100%;
-        }
-
-        .menu a,
-        .menu form button {
-            display: block;
-            padding: 5px 10px;
-            text-align: left;
-            background: none;
-            border: none;
-            font: inherit;
-            cursor: pointer;
-            color: #333;
-        }
-
-        .menu a:hover,
-        .menu form button:hover {
-            color: #27ae60;
-        }
-
         .comment-header {
             display: flex;
             justify-content: space-between;
@@ -273,20 +234,20 @@
     <div class="content">
         <!-- Top row of the content page -->
         <div class='top-row'>
-            <div class='to-user'>
-                <h2><i class='fas fa-user'></i> {{ $content->user->name }}</h2>
+            <div class='content-header-user'>
+                <h2><a href="{{ route('content.exploreUser', ['user_id' => $content->user->user_id])}}"><i class='fas fa-user'></i>{{$content->user->name}}</a></h2>
             </div>
 
-            <div class='edit-post'>
+            <div class='content-header-menu'>
                 @if(auth()->id() === $content->user_id)
                 <div class="menu-wrapper">
                     <i class='fas fa-ellipsis-vertical' onclick="toggleMenu(this)"></i>
                     <div class="menu hidden">
-                        <a href="{{ route('content.edit', ['content_id' => $content->content_id]) }}">Edit</a>
+                        <a href="{{ route('content.edit', ['content_id' => $content->content_id]) }}"><i class='fas fa-edit'></i>Edit</a>
                         <form method="POST" action="{{ route('content.delete', ['content_id' => $content->content_id]) }}">
                             @csrf
                             @method('DELETE')
-                            <button type="submit">Delete</button>
+                            <button type="submit"><i class='fas fa-trash-can'></i>Delete</button>
                         </form>
                     </div>
                 </div>
@@ -295,18 +256,20 @@
         </div>
 
         <!-- Image section of the feed page -->
-        @if(!empty($content->img_dir))
-            <img src="/images/{{ $content->img_dir }}" alt="Image" style="max-width: 100%; margin-top: 10px;"> </br>
-        @endif
+        <div class='content-post'>
+            @if(!empty($content->img_dir))
+                <img src="/images/{{ $content->img_dir }}" alt="Image" style="max-width: 100%; margin-top: 10px;"> </br>
+            @endif
 
-        <!-- Text and URL display (no "see more" logic needed) -->
-        @if(!empty($content->content_text))
-            <span>{{ $content->content_text }}</span><br>
-        @endif
+            <!-- Text and URL display (no "see more" logic needed) -->
+            @if(!empty($content->content_text))
+                <span>{{ $content->content_text }}</span><br>
+            @endif
 
-        @if(!empty($content->url))
-            <a style='color:blue' href="{{ $content->url }}" target="_blank">{{ $content->url }}</a>
-        @endif
+            @if(!empty($content->url))
+                <a style='color:blue' href="{{ $content->url }}" target="_blank">{{ $content->url }}</a>
+            @endif
+        </div>
 
         <!-- Like button -->
         <div class='interact'>
