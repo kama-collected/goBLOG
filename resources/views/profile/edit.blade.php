@@ -7,93 +7,98 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
     <style>
-        body {
-            background-color: #f3f4f6; /* light gray */
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
+body {
+    background-color: #222; /* dark background */
+    font-family: Arial, sans-serif;
+    color: #ddd;
+}
 
-        .edit-container {
-            min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 2rem;
-        }
+.edit-container {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+}
 
-        .edit-card {
-            background-color: white;
-            border-radius: 1rem;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-            padding: 2rem;
-            width: 100%;
-            max-width: 450px;
-        }
+.edit-card {
+    background-color: #181a1b;
+    border-radius: 1rem;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    padding: 2rem;
+    width: 100%;
+    max-width: 450px;
+    color: #ddd;
+}
 
-        .edit-title {
-            font-size: 1.5rem;
-            font-weight: bold;
-            color: #1f2937; /* gray-800 */
-            text-align: center;
-            margin-bottom: 1.5rem;
-        }
+.edit-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #eee;
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
 
-        .form-label {
-            display: block;
-            font-weight: 600;
-            color: #374151; /* gray-700 */
-            margin-bottom: 0.25rem;
-        }
+.form-label {
+    display: block;
+    font-weight: 600;
+    color: #ccc;
+    margin-bottom: 0.25rem;
+}
 
-        .form-input {
-            width: 100%;
-            padding: 0.5rem;
-            border: 1px solid #d1d5db; /* gray-300 */
-            border-radius: 0.5rem;
-            box-shadow: inset 0 1px 2px rgba(0,0,0,0.05);
-            transition: border-color 0.3s ease, box-shadow 0.3s ease;
-        }
+.form-input {
+    width: 100%;
+    padding: 0.5rem;
+    background-color: #2c2f30;
+    border: 1px solid #444;
+    border-radius: 0.5rem;
+    color: #ddd;
+    box-shadow: inset 0 1px 2px rgba(0,0,0,0.3);
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
 
-        .form-input:focus {
-            border-color: #27ae60;
-            outline: none;
-            box-shadow: 0 0 0 2px rgba(39, 174, 96, 0.3);
-        }
+.form-input:focus {
+    border-color: #27ae60;
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(39, 174, 96, 0.3);
+}
 
-        .error-message {
-            color: #e3342f;
-            font-size: 0.875rem;
-            margin-top: 0.25rem;
-        }
+.error-message {
+    color: #e3342f;
+    font-size: 0.875rem;
+    margin-top: 0.25rem;
+}
 
-        .submit-btn {
-            width: 100%;
-            background-color: #27ae60;
-            color: white;
-            font-weight: 600;
-            padding: 0.5rem 1rem;
-            border-radius: 0.5rem;
-            border: none;
-            margin-top: 1.5rem;
-            cursor: pointer;
-            transition: background-color 0.2s ease;
-        }
+.success-message {
+    background-color: #1e3d2f;
+    color: #27ae60;
+    border: 1px solid #10b981;
+    padding: 0.75rem 1rem;
+    border-radius: 0.5rem;
+    margin-bottom: 1.5rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
 
-        .submit-btn:hover {
-            background-color: #219653;
-        }
+.submit-btn {
+    width: 100%;
+    background-color: #27ae60;
+    color: white;
+    font-weight: 600;
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    border: none;
+    margin-top: 1.5rem;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
 
-        .success-message {
-            background-color: #d1fae5; /* emerald-100 */
-            color: #065f46; /* emerald-800 */
-            border: 1px solid #10b981; /* emerald-500 */
-            padding: 0.75rem 1rem;
-            border-radius: 0.5rem;
-            margin-bottom: 1.5rem;
-            font-weight: 600;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
+.submit-btn:hover {
+    background-color: #219653;
+}
+
     </style>
 </head>
 <body>

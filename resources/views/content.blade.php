@@ -12,20 +12,21 @@
 
 
     <style>
-                body {
+        body {
             font-family: Arial, sans-serif;
-            background: #f0f2f5;
+            background: #222;
             padding: 10px;
+            color: #ddd;
         }
 
         .content {
             margin: 1rem auto;
             width: 60%;
-            background-color: white;
+            background-color: #181a1b;
             padding: 2rem;
             border-radius: 12px;
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-            color: #333;
+            color: #ddd;
         }
 
         .top-row {
@@ -40,7 +41,7 @@
         }
 
         .to-user i {
-            background-color: #f0f2f5;
+            background-color: #333;
             margin-right: 10px;
             padding: 15px;
             border-radius: 10px;
@@ -64,7 +65,7 @@
         }
 
         .edit-post i:hover {
-            background-color: #f0f2f5;
+            background-color: #222;
             color: #27ae60;
             border-radius: 25%;
         }
@@ -80,7 +81,7 @@
             font-size: 1rem;
             text-align: justify;
             padding: 15px;
-            border-bottom: 1px solid #ccc;
+            border-bottom: 1px solid #444;
         }
 
         .comments-section {
@@ -90,13 +91,15 @@
         .comments-section h2 {
             font-size: 20px;
             margin-bottom: 1rem;
+            color: #ddd;
         }
 
         .comment {
             padding: 1rem;
-            background: #f9f9f9;
+            background: #2c2f31;
             border-radius: 8px;
             margin-bottom: 10px;
+            color: #ccc;
         }
 
         .comment p {
@@ -107,13 +110,21 @@
             width: 100%;
             padding: 10px;
             border-radius: 8px;
-            border: 1px solid #ccc;
+            border: 1px solid #555;
+            background-color: #2c2f31;
+            color: #ddd;
             margin-top: 1rem;
             resize: none;
         }
 
+        textarea:focus{
+            border-color: #27ae60;
+        outline: none;
+            box-shadow: 0 0 0 2px rgba(39, 174, 96, 0.3);
+        }
+
         button {
-            background-color: #f0f2f5;
+            background-color: #181a1b;
             border: none;
             padding: 0.5rem 1rem;
             margin-top: 0.5rem;
@@ -121,10 +132,11 @@
             cursor: pointer;
             transition: background 0.3s;
             font-size: 0.9rem;
+            color: #ddd;
         }
 
         button:hover {
-            background-color: #f0f2f5;
+            background-color: #222;
             color: #27ae60;
         }
 
@@ -147,7 +159,7 @@
             background: none;
             border: none;
             cursor: pointer;
-            color: #777;
+            color: #999;
             padding: 0;
             margin-right: 10px;
             margin-top: 0;
@@ -168,34 +180,40 @@
             align-items: left;
         }
 
-        .interact form{
+        .interact form {
             display: flex;
             box-shadow: 0 0 0 0;
             padding: 0;
-            border:0;
+            border: 0;
             margin: 0;
         }
 
         .interact i {
+            background-color: #222;
+            padding: 0;
             margin-bottom: 0;
         }
 
-        .interact button{
+        .interact button {
             background: none;
             padding: 6px;
+            color: #ccc;
         }
 
-        .interact button:hover{
+        .interact button:hover {
             background: none;
+            color: #27ae60;
         }
 
         .interact a {
             background: none;
-            margin-left:auto;
+            margin-left: auto;
             padding: 6px;
+            color: #ccc;
+            text-decoration: none;
         }
 
-        .interact a:hover{
+        .interact a:hover {
             background: none;
             color: #27ae60;
         }
@@ -210,12 +228,12 @@
         .like-count {
             font-size: 14px;
             color: #777;
-            margin-right:10px;
+            margin-right: 10px;
         }
 
         .like-btn {
             width: auto;
-            color: white;
+            color: #ccc;
             transition: color 0.3s ease;
             display: flex;
             align-items: center;
@@ -226,7 +244,6 @@
         .like-btn.liked {
             color: #27ae60;
         }
-
     </style>
 </head>
 <body>

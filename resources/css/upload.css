@@ -23,7 +23,12 @@
     width: 50%;
     border: 1px solid #ccc;
     border-radius: 8px;
+}
 
+.upload-form input:focus, .upload-form textarea:focus{
+    border-color: #27ae60;
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(39, 174, 96, 0.3);
 }
 
 .upload-additional i {
