@@ -40,7 +40,18 @@ class ContentController extends Controller
             'likedContentIDs' => $likedContentIDs,
         ]);
     }
-
+    //search function
+    public function search(Request $request)
+    {
+        $query = $request->input('query');
+    
+        $results = Content::with('user')
+            ->where('content_title', 'like', "%{$query}%")
+            ->orWhere('content_body', 'like', "%{$query}%")
+            ->get();
+    
+        return view('searchResults', compact('results', 'query'));
+    }
     // Explore Page
     public function explore()
     {

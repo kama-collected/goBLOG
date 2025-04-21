@@ -30,16 +30,16 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
         ];
     }
-
+    public function contents()
+    {
+        return $this->hasMany(\App\Models\Content::class, 'user_id', 'user_id');
+    }
     // Check if the user is an admin
     public function isAdmin()
     {
         return $this->is_admin == 1;
     }
-    public function content(){
-        return $this ->hasMany('App\Models\content');
-        
-    }
+   
     public function comments(){
         return $this ->hasMany('App\Models\comments');
     }

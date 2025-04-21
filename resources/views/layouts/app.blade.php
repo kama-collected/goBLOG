@@ -24,8 +24,9 @@
 
     @vite('resources/css/app.css')
     @stack('styles')
+    @yield('custom-style')
 </head>
-<body class="bg-light">
+<body class="@yield('body-class', 'bg-light')">
     <div id="app">
         <!-- Main Content -->
         <main class="py-4">

@@ -13,7 +13,8 @@ return new class extends Migration
     {
         Schema::create('contents', function (Blueprint $table) {
             $table->id('content_id'); // equivalent to AUTO_INCREMENT primary key
-            $table->text('content_text');
+            $table->string('content_title');
+            $table->text('content_body');
             $table->string('url', 255)->nullable();
             $table->string('img_dir', 255)->nullable();
             $table->unsignedBigInteger('user_id');

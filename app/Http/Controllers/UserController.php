@@ -45,7 +45,8 @@ class UserController extends Controller
         $user->delete();
 
         // Redirect with success message
-        return redirect()->route('users.index')->with('success', 'User deleted successfully');
+        return redirect()->back()->with('success', 'User deleted successfully.');
+
     }
 
     public function edit($id)
@@ -207,7 +208,7 @@ class UserController extends Controller
             'is_admin' => $request->is_admin
         ]);
 
-        return redirect()->route('users.index')->with('success', 'User created successfully');
+        return redirect()->route('admindashboard')->with('success', 'User created successfully');
     }
 
  
@@ -308,6 +309,15 @@ class UserController extends Controller
 
         return view ('contentdashboard',['contents'=>$contents]);
     }
+
+    public function viewUserContent(User $user)
+    {
+        $contents = $user->contents()
+            ->with(['comments.user', 'likes']) // eager load user who made each comment
+            ->latest()
+            ->get();
     
+        return view('admin.user_contents', compact('user', 'contents'));
+    }
 }
 
