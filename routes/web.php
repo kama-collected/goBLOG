@@ -77,7 +77,7 @@ Route::get('/create', [UserController::class, 'create'])->name('create');
 
 // User profile routes
 Route::get('/users/{users}', [UserController::class, 'show'])->name('users.profile');
-//Route::get('/users/{users}/edit', [UserController::class, 'edit'])->name('users.edit');
-Route::put('/users/{users}', [UserController::class, 'update'])->name('users.update');
+Route::get('/users/{user}/edit', [UserController::class, 'edit'])->name('users.edit');
+Route::put('/users/{user}', [UserController::class, 'update'])->name('users.update');
 
 Route::get('/contentsDashBoard',[UserController::class,'loadContent']);
