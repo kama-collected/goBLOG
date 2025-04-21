@@ -23,7 +23,13 @@
                     <!-- Content Header  -->
                     <div class='content-header'>
                         <div class='content-header-user'>
-                            <h2><a href="{{ route('content.exploreUser', ['user_id' => $content->user->user_id])}}"><i class='fas fa-user'></i>{{$content->user->name}}</a></h2>
+                            <h2>@if($content->user)
+    <a href="{{ route('content.exploreUser', ['user_id' => $content->user->user_id]) }}">
+        {{ $content->user->name }}
+    </a>
+@else
+    <span class="text-muted">Unknown User</span>
+@endif</h2>
                         </div>
 
                         <div class='content-header-menu'>

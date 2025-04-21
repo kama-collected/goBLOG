@@ -17,13 +17,15 @@ class Content extends Model
         'user_id', // optional if you're using this
     ];
 
-    public function Comments(){
-        return $this ->hasMany(Comment::class);
-    }
+    public function comments()
+{
+    return $this->hasMany(Comment::class, 'content_id', 'content_id');
+}
 
-    public function likes() {
-        return $this->hasMany(Like::class, 'content_id');
-    }
+public function likes()
+{
+    return $this->hasMany(Like::class, 'content_id', 'content_id');
+}
 
     public function user() {
         return $this->belongsTo(User::class, 'user_id');

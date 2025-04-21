@@ -68,11 +68,6 @@ Route::middleware(['auth', 'can:manage,App\Models\User'])->group(function () {
     Route::get('/users/{id}/edit', [UserController::class, 'edit'])->name('edit');
 });
 
-
-Route::middleware(['auth'])->group(function () {
-    Route::get('/userTable', [UserController::class, 'index'])->name('userTable');
-});
-
 Route::get('/create', [UserController::class, 'create'])->name('create');
 
 // User profile routes
@@ -80,4 +75,10 @@ Route::get('/users/{users}', [UserController::class, 'show'])->name('users.profi
 //Route::get('/users/{users}/edit', [UserController::class, 'edit'])->name('users.edit');
 Route::put('/users/{users}', [UserController::class, 'update'])->name('users.update');
 
+//Admin View User Content
 Route::get('/contentsDashBoard',[UserController::class,'loadContent']);
+Route::get('/admin/user/{user}/contents', [UserController::class, 'viewUserContent'])
+    ->middleware('can:manage,App\Models\User')
+    ->name('admin.user.contents');
+//Admin Delete Content
+Route::delete('/content/{content_id}', [ContentController::class, 'destroy'])->name('content.delete');
